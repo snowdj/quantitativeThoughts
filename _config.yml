@@ -9,12 +9,12 @@ markdown: rdiscount
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Jekyll Bootstrap
-tagline: Site Tagline
+title : Quantitative Thoughts
+tagline: Explored through R
 author :
-  name : Name Lastname
+  name : Ahmed Nagi
   email : blah@email.test
-  github : username
+  github : lalas
   twitter : username
   feedburner : feedname
 
@@ -55,7 +55,7 @@ JB :
   #   - Only the following values are falsy: ["", null, false]
   #   - When setting BASE_PATH it must be a valid url.
   #     This means always setting the protocol (http|https) or prefixing with "/"
-  BASE_PATH : false
+  BASE_PATH : http://lalas.github.io/quantitativeThoughts
 
   # By default, the asset_path is automatically defined relative to BASE_PATH plus the enabled theme.
   # ex: [BASE_PATH]/assets/themes/[THEME-NAME]
