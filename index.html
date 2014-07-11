@@ -23,9 +23,9 @@ tagline: <a href="https://github.com/lalas/quantitativeThoughts">Lalas</a> R Blo
   <ul>
   {% if paginator.previous_page %}
     {% if paginator.previous_page == 1 %}
-      <li class="prev"><a href="/" title="Previous page">Prev</a></li>
+      <li class="prev"><a href="{{ BASE_PATH }}/" title="Previous page">Prev</a></li>
     {% else %}
-      <li class="prev"><a href="/page{{paginator.previous_page}}" title="Previous page">Prev</a></li>
+      <li class="prev"><a href="{{ BASE_PATH }}/page{{paginator.previous_page}}" title="Previous page">Prev</a></li>
     {% endif %}
   {% else %}
     <li class="prev disabled"><a>Prev</a></li>
