@@ -1,5 +1,5 @@
 ---
-title: "TestingMarkdown_V2_2"
+title: "Testing RMarkdown with KnitPost"
 author: "lalas"
 date: "9 July, 2014"
 output: md_document
