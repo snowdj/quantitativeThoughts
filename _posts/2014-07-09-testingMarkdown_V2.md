@@ -32,7 +32,7 @@ summary(cars)
 
 You can also embed plots, for example:
 
-![center](/figs/testingMarkdown_V2/unnamed-chunk-2.png) 
+![center]({{ BASE_PATH }}/figs/testingMarkdown_V2/unnamed-chunk-2.png) 
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
