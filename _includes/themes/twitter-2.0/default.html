@@ -44,6 +44,8 @@
           <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
           <div class="nav-collapse">
             <ul class="nav">
+				<!-- Added the bit |sort:"name" to ensure the desired order based on file name (01-categories, before 02-tags, etc)
+				based on http://stackoverflow.com/questions/9053066/sorted-navigation-menu-with-jekyll-and-liquid -->
               {% assign pages_list = site.pages | sort:"name" %}
               {% assign group = 'navigation' %}
               {% include JB/pages_list %}
