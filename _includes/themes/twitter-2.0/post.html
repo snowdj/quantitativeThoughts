@@ -25,7 +25,11 @@
 
   <div class="span4">
     <h4>Published</h4>
-    <div class="date"><span>{{ page.date | date_to_long_string }}</span></div>
+     <div class="author">
+      <span class="date">{{ page.date | date_to_long_string }}</span>
+  	{% if page.author %} by {{ page.author }} {% endif %}
+    </div>
+    
 
   {% unless page.tags == empty %}
     <h4>Tags</h4>
