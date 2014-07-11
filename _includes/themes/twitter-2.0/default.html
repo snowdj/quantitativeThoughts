@@ -45,10 +45,10 @@
           <div class="nav-collapse">
             <ul class="nav">
               {% assign sorted_pages = site.pages | sort:"name" %}
+			  {% assign group = 'navigation' %}
 			  {% for node in sorted_pages %}
 			    <li><a href="{{node.url}}">{{node.title}}</a></li>
 			  {% endfor %}
-              {% assign group = 'navigation' %}
               {% include JB/pages_list %}
             </ul>
           </div><!--/.nav-collapse -->
