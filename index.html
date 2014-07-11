@@ -11,7 +11,7 @@ tagline: <a href="https://github.com/lalas/quantitativeThoughts">Lalas</a> R Blo
    <h1><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h1>
    <p class="author">
     <span class="date">{{post.date | date: "%Y-%m-%d"}}</span>
-	{% unless post.author == empty %} by {{post.author}} {% endif %}
+	{% unless post.author == empty %} by {{post.author}} {% endunless %}
   </p>
   <div class="content">
     {{ post.content }}
