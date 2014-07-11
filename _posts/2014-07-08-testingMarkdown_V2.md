@@ -27,7 +27,7 @@ chunks within the document. You can embed an R code chunk like this:
 You can also embed plots, for example:
 
 ![plot of chunk
-unnamed-chunk-2](/testingMarkdown_V2_files/figure-markdown_strict/unnamed-chunk-2.png)
+unnamed-chunk-2]({{ BASE_PATH }}/testingMarkdown_V2_files/figure-markdown_strict/unnamed-chunk-2.png)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to
 prevent printing of the R code that generated the plot.
