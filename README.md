@@ -76,8 +76,19 @@ To setup this blog, we followed the tutorial described in
 * What is website tagline? <http://intuitivewebsites.com/articles/website-taglines/>
 * What is apple touch icon? (and Favicon) <http://www.computerhope.com/jargon/a/appletou.htm>
 * What is the difference between 0.0.0.0 and localhost, (when running jekyll locally) <http://stackoverflow.com/questions/20778771/what-is-the-difference-between-0-0-0-0-127-0-0-1-and-localhost>
+* What is the difference between Sitemap or HTML Site Map?, see <http://www.webpagemistakes.ca/create-sitemap-or-html-site-map/>
 
+### Sitemap info:
 
+A [sitemap](https://en.wikipedia.org/wiki/Site_map) is a file with a collection of links to everything your website can serve. You’ll do just fine without one, but it may help with getting your website indexed. Search engines such as Google can use your sitemap to reach items that they would not have discovered otherwise.
+
+This site already contains a sitemap which was part of the jekyllbootstrap!
+
+* For information about format of sitemap used by google, see <https://support.google.com/webmasters/answer/183668?hl=en>
+* For information on how to create a sitemap for a jekyll website/blog, see <http://ututs.com/A-Sitemap-Generator-for-Jekyll-Powered-Websites/>
+* For information on how to submit the sitemap to google, see <https://support.google.com/sites/answer/100283?hl=en>
+
+Still NEED to do the step in this [last link](https://support.google.com/sites/answer/100283?hl=en)
 
 
 ## License for jekyllBoostrap
