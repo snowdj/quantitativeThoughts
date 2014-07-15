@@ -55,6 +55,7 @@ To setup this blog, we followed the tutorial described in
 
 * To customize the navigagtion bar as described in the main post mentioned above:
 	 + For twitter bootstrap navtabs, and pills, see <http://www.w3resource.com/twitter-bootstrap/nav-tabs-and-pills-tutorial.php>
+	 + To specify the order of the item in the navbar, see <http://stackoverflow.com/questions/9053066/sorted-navigation-menu-with-jekyll-and-liquid>
 	 + To add a drop-down menu to the navigation (not used yet!) see <http://cssmenumaker.com/>
 	 
 * Cheat Sheet for vim editor <http://www.fprintf.net/vimCheatSheet.html>
