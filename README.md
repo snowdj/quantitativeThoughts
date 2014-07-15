@@ -22,7 +22,8 @@ To setup this blog, we followed the tutorial described in
 
 * git basic commands: <https://www.atlassian.com/git/tutorial>
 * To be able to use push branches from terminal to github, we need generate and/or ssh keys to github. To do so, see <Generating SSH Keys>
-* What is inside your .git directory, <http://gitready.com/advanced/2009/03/23/whats-inside-your-git-directory.html>
+* What is inside your .git directory? <http://gitready.com/advanced/2009/03/23/whats-inside-your-git-directory.html>
+* Working with branches in git: <http://genomewiki.ucsc.edu/index.php/Working_with_branches_in_Git> 
 
 ### jekyll related
 
