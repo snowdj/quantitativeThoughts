@@ -28,6 +28,7 @@ To setup this blog, we followed the tutorial described in
 ### GitHub related
 
 * use GitHub Mac (or equivalent) to manage the repo and its update. Tutorial found at <https://mac.github.com/help.html> for various topics
+* difference between "revert this commit" and "roll back this commit", see <http://stackoverflow.com/questions/15039271/what-is-the-meaning-of-revert-this-commit-and-roll-back-this-commit-in-github-fo>
 
 ### jekyll related
 
