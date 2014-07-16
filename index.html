@@ -55,5 +55,24 @@ tagline: <a href="https://github.com/lalas/quantitativeThoughts">Lalas</a> R Blo
   
 </div>
 
+<!-- Adding interactive R code widget as described in http://statisfactions.com/2013/interactive-r-code-widget/ -->
+
+<div class="row">
+	<script src="http://aleph.sagemath.org/static/jquery.min.js"></script>
+	<script src="http://aleph.sagemath.org/static/embedded_sagecell.js"></script>
+	<script> $(function () {
+	    	sagecell.makeSagecell({inputLocation: 'div.compute-r',
+	                           	   evalButtonText: 'Evaluate',
+	                           	   defaultLanguage: "r", 
+	                           	   languages: sagecell.allLanguages});
+	});
+	</script>
+	<div class="compute-r"><script type="text/x-sage">
+	print("Hello visitor")
+	</script></div>
+</div>
+
+
+
 
 
