@@ -16,6 +16,7 @@ To setup this blog, we followed the tutorial described in
 2. [Get Started With GitHub Pages (Plus Bonus Jekyll)](http://24ways.org/2013/get-started-with-github-pages/#author)
 3. [How I built my blog in one day](http://erjjones.github.io/blog/How-I-built-my-blog-in-one-day/)
 4. [How I Created a Beautiful and Minimal Blog Using Jekyll, Github Pages, and poole](http://joshualande.com/jekyll-github-pages-poole/) and for [general information about poole](https://github.com/poole/poole)
+5. [Learning jekyll by example](https://www.andrewmunsell.com/tutorials/jekyll-by-example)
 
 
 ### Git related
