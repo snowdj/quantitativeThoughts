@@ -1,6 +1,5 @@
 # Blog for quantitative thoughts
 
-…:
 
 This branch of the repo, contains the code to generate the blog site. The blog is generated using _jekyllBoostrap_ version 0.3.0. This is one of the quickest way to publish your Jekyll powered blog and it's 100% compatible with GitHub pages. For more information see <http://jekyllbootstrap.com> for jekyll boostrap related info and <http://jekyllrb.com/> for orginal jekyll documenation.
 
