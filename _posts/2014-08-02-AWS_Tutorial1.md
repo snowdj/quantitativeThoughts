@@ -14,14 +14,14 @@ author: Lalas
 -   [Configuring and using the package](#topic2)
 -   [Creating and Managing Key-Pairs for EC2](#topic3)
 -   [Launch, Stop, and Terminate On-Demand EC2 cluster in a specific region with default security group](#topic4)
--   [Defining default region using enviroment variables](#topic5)
+-   [Defining default region using environment variables](#topic5)
 -   [Launch Spot Instances](#topic6)
 
 In this R-tutorial, we explain how to use the `awsConnect` package to launch, terminate EC2 instances on Amazon's Cloud service.
 
 ### <a name="topic1"></a>Download and install the package
 
-1.  Make sure the amazon's AWS CLI is installed on the machine you want to use this package on. For detailed information on how to do so, consult AWS CLI [setup guide](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html).
+1.  Make sure the Amazon's AWS CLI is installed on the machine you want to use this package on. For detailed information on how to do so, consult AWS CLI [setup guide](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html).
 2.  Then using the `devtools` R-package, run the following command to install `awsConnect`
 
 	``` {.r}
@@ -36,7 +36,7 @@ In this R-tutorial, we explain how to use the `awsConnect` package to launch, te
 
 ### <a name="topic2"></a>Configuring and using the package
 
-As mentioned elsewhere in the package documentation, the first thing to do once the package is installed is to setup the enviroment variables. If you are using RStudio, then enviroment variables defined in the `.bash` or `.profile` file are not available within RStudio. For instance
+As mentioned elsewhere in the package documentation, the first thing to do once the package is installed is to setup the environment variables. If you are using RStudio, then environment variables defined in the `.bash` or `.profile` files are not available within RStudio. For instance
 
 ``` {.r}
 Sys.getenv("PATH")
@@ -44,7 +44,7 @@ Sys.getenv("PATH")
 
     ## [1] "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin"
 
-does not contains the path the the `aws bin`; and other enviroment variables such as `aws_access_key_id`; the `aws_secret_access_key`; and the default `region` are empty. To fix this problem; we issue the following commands:
+does not contains the path `aws bin`; and other environment variables such as `aws_access_key_id`; the `aws_secret_access_key`; and the default `region` are empty. To fix this problem; we issue the following commands:
 
 ``` {.r}
 add.aws.path("~/.local/lib/aws/bin")
@@ -56,7 +56,7 @@ The above 3-lines of code assumes that the path to aws binaries is `~/.local/lib
 
 ### <a name="topic3"></a>Creating and Managing Key-Pairs for EC2
 
-Amazon EC2 Key Pairs (commonly called an "SSH key pair"), is need to be able to Launch and connect to an instance on AWS cloud. If no Key pairs is used when launching the instances, the user will not be able to ssh login into his/her instance.
+Amazon EC2 Key Pairs (commonly called an "SSH key pair"), are needed to be able to Launch and connect to an instance on AWS cloud. If no Key pairs are used when launching the instances, the user will not be able to ssh login into his/her instance.
 
 Amazon offers 2 options: 1. The possibility of using it's service to create a key-pair for you; where you download the private key to your local machine 2. Uploading your own public key to be used.
 
@@ -78,7 +78,7 @@ and the file `~/.ssh/MyEC2.pem` will be deleted
 
 ##### Uploading and using your own public key
 
-The second method that Amazon web services allows, is to use your own public/private key pairs. Assuming that the user have used `ssh-keygen` command (or something similar) to generate the public/private key pairs; he/she can then upload their public key to a specific region using:
+The second method that Amazon web services allows, is to use your own public/private key pairs. Assuming that the user has used `ssh-keygen` command (or something similar) to generate the public/private key pairs; he/she can then upload their public key to a specific region using:
 
 ``` {.r}
 upload.key(path_public_key = "~/.ssh/id_rsa.pub", key_name = "MyEC2", region = "us-east-1")
@@ -88,13 +88,13 @@ where `id_rsa.pub` is the file that contains the protocol version 2 RSA public k
 
 ### <a name="topic4"></a>Launch, Stop, and Terminate On-Demand EC2 cluster in a specific region with default security group
 
-Now that we have created (or upload) the required key to AWS Cloud, we are ready to launch EC2 instances. We start by launching a cluster (of 2 nodes); in the US East (N. Virginia) region.
+Now that we have created (or uploaded) the required key to AWS Cloud, we are ready to launch EC2 instances. We start by launching a cluster (of 2 nodes); in the US East (N. Virginia) region.
 
 ``` {.r}
 cl <- startCluster(ami = "ami-7376691a",instance.count = 2,instance.type = "t1.micro", key.name = "MyEC2", region = "us-east-1")
 ```
 
-using the default security group, since we didn't specify the `security.grp` parameter. As of the time of writting this tutorial, `ami-7376691a` is an Amazon Machine Instance that run of `Ubuntu-13.10` (64bit), and has `R version 3.1.0` and `RStudio-0.98.501` installed on it. To stop this cluster, we use
+using the default security group, since we didn't specify the `security.grp` parameter. As of the time of writing this tutorial, `ami-7376691a` is an Amazon Machine Instance that runs off `Ubuntu-13.10` (64bit), and has `R version 3.1.0` and `RStudio-0.98.501` installed on it. To stop this cluster, we use
 
 ``` {.r}
 stopCluster(cluster = cl, region = "us-east-1")
@@ -106,9 +106,9 @@ and to terminate this cluster, we use:
 terminateCluster(cluster = cl, region = "us-east-1")
 ```
 
-### <a name="topic5"></a>Defining default region using enviroment variables
+### <a name="topic5"></a>Defining default region using environment variables
 
-Instead of always specifying the `region` parameters when calling various function in the `awsConnect` package; the user can use the enviroment variable `AWS_DEFAULT_REGION` to set his/her default region. For example, to set up the default region to be US East (N. Virginia); we use
+Instead of always specifying the `region` parameters when calling various functions in the `awsConnect` package; the user can use the environment variable `AWS_DEFAULT_REGION` to set his/her default region. For example, to set up the default region to be US East (N. Virginia); we use
 
 ``` {.r}
 Sys.setenv(AWS_DEFAULT_REGION = "us-east-1")
@@ -120,7 +120,7 @@ where, `us-east-1` is the ID for a specific region. To find out the IDs' of the 
 regions <- describe.regions()
 ```
 
-And to find out the availability zone and their status for a specif regions, find out its ID and use the following command:
+And to find out the availability zone and their status for a specific regions, find out its ID and use the following command:
 
 ``` {.r}
 describe.avail.zone(regions$ID[3])
@@ -146,7 +146,7 @@ With this in mind; in order to launch a spot instance, we would:
 	get.spot.price(instance.type = "cr1.8xlarge", region = "us-east-1")
 	```
 
-	**Note**: if we had defined the enviroment variable `AWS_DEFAULT_REGION`; we could have omitted the `region` parameters in the previous command to find out the most recent spot price history for the *default* region.
+	**Note**: if we had defined the environment variable `AWS_DEFAULT_REGION`; we could have omitted the `region` parameters in the previous command to find out the most recent spot price history for the *default* region.
 
 2.  Once we obtain the most recent spot price, we can bid for a spot instance, by providing a price higher than or equal to the spot price returned in the previous step. For instance, assuming that the spot price for the `t1.micro` is \$0.0031/hr; we would use the following command:
 
@@ -168,7 +168,7 @@ With this in mind; in order to launch a spot instance, we would:
 	describe.spot.instanceReq(Spot.Instance.Req.IDs)
 	```
 
-5.  Assuming the *statusCode* returned from the previous command is *fulfilled*; then we can obtained the *instanceIDs* that were launched as a result of our bidding request using the following command:
+5.  Assuming the *statusCode* returned from the previous command is *fulfilled*; then we can obtain the *instanceIDs* that were launched as a result of our bidding request using the following command:
 
 	``` {.r}
 	Instance.IDs <- describe.spot.instanceReq(Spot.Instance.Req.IDs)[,"InstanceID"]
