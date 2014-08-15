@@ -24,15 +24,15 @@ In this R-tutorial, we explain how to use the `awsConnect` package to launch, te
 1.  Make sure the amazon's AWS CLI is installed on the machine you want to use this package on. For detailed information on how to do so, consult AWS CLI [setup guide](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html).
 2.  Then using the `devtools` R-package, run the following command to install `awsConnect`
 
-``` {.r}
-devtools::install("https://github.com/lalas/awsConnect/")
-```
+	``` {.r}
+	devtools::install("https://github.com/lalas/awsConnect/")
+	```
 
-1.  Finally load the library, with
+3.  Finally load the library, with
 
-``` {.r}
-library(awsConnect)
-```
+	``` {.r}
+	library(awsConnect)
+	```
 
 ### <a name="topic2"></a>Configuring and using the package
 
@@ -142,45 +142,45 @@ With this in mind; in order to launch a spot instance, we would:
 
 1.  To find out the most recent spot price of a machine of a specific type (e.g. cr1.8xlarge) in a particular region we use the following command:
 
-``` {.r}
-get.spot.price(instance.type = "cr1.8xlarge", region = "us-east-1")
-```
+	``` {.r}
+	get.spot.price(instance.type = "cr1.8xlarge", region = "us-east-1")
+	```
 
-Note: if we had defined the enviroment variable `AWS_DEFAULT_REGION`; we could have omitted the `region` parameters in the previous command to find out the most recent spot price history for the *default* region.
+	**Note**: if we had defined the enviroment variable `AWS_DEFAULT_REGION`; we could have omitted the `region` parameters in the previous command to find out the most recent spot price history for the *default* region.
 
-1.  Once we obtain the most recent spot price, we can bid for a spot instance, by providing a price higher than or equal to the spot price returned in the previous step. For instance, assuming that the spot price for the `t1.micro` is \$0.0031/hr; we would use the following command:
+2.  Once we obtain the most recent spot price, we can bid for a spot instance, by providing a price higher than or equal to the spot price returned in the previous step. For instance, assuming that the spot price for the `t1.micro` is \$0.0031/hr; we would use the following command:
 
-``` {.r}
-spot.instances <- req.spot.instances(spot.price = 0.0032, ami = "ami-7376691a", instance.count = 1, instance.type = "t1.micro",key.name = "MyEC2")
-```
+	``` {.r}
+	spot.instances <- req.spot.instances(spot.price = 0.0032, ami = "ami-7376691a", instance.count = 1, instance.type = "t1.micro",key.name = "MyEC2")
+	```
 
-to bid for a `t1.micro` instance in our default region.
+	to bid for a `t1.micro` instance in our default region.
 
-1.  Obtain the request IDs for the instances using:
+3.  Obtain the request IDs for the instances using:
 
-``` {.r}
-Spot.Instance.Req.IDs <- spot.instances[,"SpotInstanceReqID"]
-```
+	``` {.r}
+	Spot.Instance.Req.IDs <- spot.instances[,"SpotInstanceReqID"]
+	```
 
-1.  Find out the status of the bidding request, using the IDs obtained in the previous step
+4.  Find out the status of the bidding request, using the IDs obtained in the previous step
 
-``` {.r}
-describe.spot.instanceReq(Spot.Instance.Req.IDs)
-```
+	``` {.r}
+	describe.spot.instanceReq(Spot.Instance.Req.IDs)
+	```
 
-1.  Assuming the *statusCode* returned from the previous command is *fulfilled*; then we can obtained the *instanceIDs* that were launched as a result of our bidding request using the following command:
+5.  Assuming the *statusCode* returned from the previous command is *fulfilled*; then we can obtained the *instanceIDs* that were launched as a result of our bidding request using the following command:
 
-``` {.r}
-Instance.IDs <- describe.spot.instanceReq(Spot.Instance.Req.IDs)[,"InstanceID"]
-```
+	``` {.r}
+	Instance.IDs <- describe.spot.instanceReq(Spot.Instance.Req.IDs)[,"InstanceID"]
+	```
 
-1.  (OPTIONAL STEP) By default, Amazon EBS-backed instance root volumes have the DeleteOnTermination flag set to true, which causes the volume to be deleted upon instance termination. This might be problematic, since a spot instance could be terminated at anytime, as stated above. In order to fix this default behaviour, assuming we have the Instance IDs of the spot instances which we launched (as we did in the previous step), we can use the following command
+6.  (OPTIONAL STEP) By default, Amazon EBS-backed instance root volumes have the DeleteOnTermination flag set to true, which causes the volume to be deleted upon instance termination. This might be problematic, since a spot instance could be terminated at anytime, as stated above. In order to fix this default behaviour, assuming we have the Instance IDs of the spot instances which we launched (as we did in the previous step), we can use the following command
 
-``` {.r}
-rootVol.DeleteOnTermination(Instance.IDs[1])
-```
+	``` {.r}
+	rootVol.DeleteOnTermination(Instance.IDs[1])
+	```
 
-in order not to delete the root volume of the first instance, once it's terminated.
+	in order not to delete the root volume of the first instance, once it's terminated.
 
 Finally, to get information about running instances, running in the default region, we would use the following command:
 
