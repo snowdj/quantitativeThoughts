@@ -3,7 +3,7 @@ layout: post
 title: Linear State Space Linear Models, and Kalman Filters
 tags: [Kalman Filters, State Space Model, Dynamical Linear Model]
 categories: [R]
-
+author: Lalas
 ---
 {% include JB/setup %}
  
