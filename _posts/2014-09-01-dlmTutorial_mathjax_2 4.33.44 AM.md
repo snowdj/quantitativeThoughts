@@ -3,7 +3,7 @@ layout: post
 title: Linear State Space Linear Models, and Kalman Filters
 tags: [Kalman Filters, State Space Model, Dynamical Linear Model]
 categories: [R]
-author: Lalas
+
 ---
 {% include JB/setup %}
  
@@ -12,19 +12,19 @@ author: Lalas
 
 In this post, we will cover the topic of Linear State Space Models and the R-package, **dlm**([Petris, 2010](http://www.jstatsoft.org/v36/i12/)). The example we cover are taken from the [slides](http://www.rinfinance.com/agenda/2012/workshop/Zivot+Yollin.pdf) prepared by Eric Zivot and Guy Yollin; and the [slides](http://definetti.uark.edu/~gpetris/UseR-2011/SSMwR-useR2011handout.pdf) prepared by Giovanni Petris. The following are a list of topic covered:
 
--	[State Space Models](#topic1) 
--   [Dynamics Linear Models](#topic2) 
-	+	[Dynamics Linear Models in R](#topic2.1) 
--	[Kalman Filters](#topic3)
--	[Numerical Examples](#topic4)
-	+	[Regression Example](#topic4.1)
-	+	[Random Walk Plus noise Example](#topic4.2)
--	[Seemingly Unrelated Time Series Equations (SUTSE)](#topic5)
-	+	[GDP example](#topic5.1)
--	[Seemingly Unrelated Regression models](#topic6)
-	+	[CAPM example](#topic6.1)  
--	[Dynamic Common Factors Model](#topic7)
-	+	[Example](#topic7.1) 
+  +   [State Space Models](#topic1) 
+  +   [Dynamics Linear Models](#topic2) 
+-   [Dynamics Linear Models in R](#topic2.1) 
+  +   [Kalman Filters](#topic3)
+  +   [Numerical Examples](#topic4)
+-   [Regression Example](#topic4.1)
+-   [Random Walk Plus noise Example](#topic4.2)
+  +   [Seemingly Unrelated Time Series Equations (SUTSE)](#topic5)
+-   [GDP example](#topic5.1)
+  +   [Seemingly Unrelated Regression models](#topic6)
+-   [CAPM example](#topic6.1)  
+  +   [Dynamic Common Factors Model](#topic7)
+-   [Example](#topic7.1) 
 
 
 ### <a name="topic1"></a> State Space Models
@@ -69,8 +69,8 @@ An equivalent formulation for a DLM is specified by the set of equations:
 
 \\[ 
 \begin{align}
-y_t &= \, \, F_t \, \theta_t \, \, \, + \upsilon_t \qquad & \upsilon_t \sim N_m(0,V_t) \qquad & (1) \\\\ 
-\theta_t &= \, G_t \, \theta_\{t-1\} + \omega_t\qquad & \omega_t \sim N_p(0,W_t) \qquad & (2) \\\\
+y_t &= \, \, F_t \, \theta_t \, \, + \upsilon_t \qquad &\upsilon_t \sim N_m(0,V_t) \qquad & (1) \\\\ 
+\theta_t &= \, G_t \, \theta_\{t-1\} + \omega_t\qquad &\omega_t \sim N_p(0,W_t) \qquad & (2) \\\\
 \end{align}
 \\]
 
@@ -78,7 +78,7 @@ for \\(t = 1,...\\) The specification of the model is completed by assigning a p
 
 \\[
 \begin{align}
-\theta_0 \quad \sim \quad N(m_0 ,C_0) \qquad \qquad \qquad \qquad \qquad \quad & (3)
+\theta_0 \quad \sim \quad N(m_0 ,C_0) \qquad \qquad \qquad \qquad \qquad \qquad & (3)
 \end{align}
 \\]
 That is a normal distribution with mean \\(m_0\\) and variance \\(C_0\\). 
@@ -103,8 +103,8 @@ In this model, the matrices \\(F_t\\), \\(G_t\\), \\(V_t\\), and \\(W_t\\) are c
 In this example the system of equations are
 \\[
 \begin{align}
-y_t &= \theta_t \quad + \upsilon_t \qquad & \upsilon_t \sim N(0,V) \\\\ 
-\theta_t &= \theta_\{ t-1 \} \, + \omega_t  \qquad & \omega_t \sim N(0,W) \\\\
+y_t &=& \theta_t &+& \upsilon_t \qquad \upsilon_t \sim N(0,V) \\\\ 
+\theta_t &=& \,  \theta_\{ t-1 \} &+& \omega_t  \qquad \omega_t \sim N(0,W) \\\\
 \end{align}
 \\]
 
@@ -139,14 +139,12 @@ where
 * \\(V\\) is \\(\sigma\^{2}\\)
 
 More generally, a dynamic linear regression model is described by:
-
 \\[
 \begin{align}
 y_t &= \mathbf{ x_t^\prime } \theta_t  + v_t \qquad & \upsilon_t \sim N(0,V_t) \\\\
 \theta_t &= \, G_t \, \theta_\{t-1\} + \omega_t  \qquad & \omega_t  \sim N(0,W_t) \\\\
 \end{align}
 \\]
-
 where the coefficients:
 
 * \\(\mathbf{ x_t\^{\prime} } := [x\_{1t}, \dots , x\_{pt}]\\) are the _p-explanatory_ variables at time \\(t\\). These are not assumed to be stochastic in this model, but rather fixed (i.e. this is a conditional model of \\(y_t|x_t\\)
@@ -236,19 +234,19 @@ m0(myModel) <- rnorm()
 
 #### Filtering:
 
-Let \\( y\^t = (y_1, ..., y_t) \\) be the vector of observation up to time \\(t\\). The _filtering_ distributions, \\(p(\theta_t|y\^{t})\\) can be computed recursively as follows:
+Let \\( y\^t = (y_1, ..., y_t) \\) be the vector of observation up to time \\(t\\). The _filtering_ distributions, \\( p(\theta_t|y\^{t})\\) can be computed recursively as follows:
 
 1.  Start with \\( \theta_0 \sim N(m_0, C_0) \\) at _time_ 0
 
 2.  One step forecast for the _state_ 
-\\\[ \theta_t|y^\{t-1} \sim N(a_t, R_t) \\]
+\\\[ \theta_t|y^\{t-1\} \sim N(a_t, R_t) \\]
 where \\(a_t = G_t \cdot m\_{t-1} \\), and \\(R_t = G_t C_\{t-1\} G_t^\prime + W_t\\)
 
 3.  One step forecast for the _observation_ 
 \\[ y_t|y^{t-1} \sim N(f_t, Q_t) \\]
 where \\(f_t = F_t \cdot a_t\\), and \\(Q_t = F_t R_\{t-1\} F_t^\prime + V_t\\)
 
-4.  Compute the _posterior_ at time \\(t\\); 
+4.  Compute the _posterior_ at time $t$; 
 \\[ \theta_t|y\^t \sim N(m_t, C_t) \\] 
 where \\(m_t = a_t + R_t \, f_t^\prime Q_t^\{-1\} (y_t - f_t)\\), and \\(C_t = R_t - R_t F_t^\prime Q_t^\{-1\} F_t R_t\\)
 
@@ -265,16 +263,16 @@ The function `dlmFilter` returns:
 
 #### Smoothing:
 
-Backward recursive algorithm can be used to obtain \\( p(\theta_t|y\^T) \\) for a fixed \\(T\\) and for \\(t =\\) {\\(0, 1, 2, ...T\\)}.
+Backward recursive algorithm can be used to obtain \\(p(\theta_t|y\^{T})\\) for a fixed \\(T\\) and for \\(t =\\) {\\(0, 1, 2, ...T\\)}.
 
-1.  Starting from \\(\theta_T|y_T \sim N(m_T, C_T\\) at time \\(t = T\\)
-2.  For \\(t\\) in \\(\left \\{ T - 1, T - 2, ..., 0 \right \\}\\)
+0.  Starting from \\( \theta_T|y_T \sim N(m_T, C_T \\) at time \\(t = T\\)
+1.  For \\(t\\) in \\(\left \\{ T - 1, T - 2, ..., 0 \right \\}\\)
 \\[ \theta_t|y\^{T} \sim N(s_t, S_t) \\]
 where:
 \\[
 \begin{align}
-    s_t &= m_t + C_t \, G\_{t+1}^{\, \prime} R\_{t+1}\^{-1}(s\_{t+1} - a\_{t + 1}) \qquad \textrm{and} \\\\
-    S_t &= C_t - C_t \, G\_{t+1}^{\, \prime} R\_{t+1}\^{-1}(R\_{t+1} - S\_{t + 1}) \, R\_{t+1}^{-1} G\_{t+1}\^{\, \prime} C_t \\\\
+    s_t &= m_t + C_t \, G\_{t+1}^{\, \prime} R\_{t+1}^{-1}(s\_{t+1} - a\_{t + 1}) \qquad \textrm{and} \\\\
+    S_t &= C_t - C_t \, G\_{t+1}^{\, \prime} R\_{t+1}^{-1}(R\_{t+1} - S\_{t + 1}) \, R\_{t+1}^{-1} G\_{t+1}^{\, \prime} C_t \\\\
 \end{align}
 \\]
 
@@ -294,12 +292,12 @@ The function `dlmSmooth` returns:
 
 To calculate the forecast distributions, for \\(k = 1, 2, ...\\) etc, we proceed as follows:
 
-1.  starting with a sample from \\(\theta_T|y_T \sim N(m_T, C_T)\\)
-2.  Forecast the _state_:
+0.  starting with a sample from \\(\theta_T|y_T \sim N(m_T, C_T)\\)
+1.  Forecast the _state_:
 \\[ \theta\_{T+k}|y\^{T} \sim N(a_k\^{T}, R_k\^{T}) \\]
 where: \\(a_t\^{k} = G\_{T+k} \, a\_{k-1}\^{T} \\) and \\( R_k\^{T} = G\_{T+k} \, R\_{k-1}\^{T} G\_{T+k}^{\, \prime} + W\_{T+k}\\)
 
-3.  Forecast the _observation_:
+2.  Forecast the _observation_:
 \\[ \theta\_{T+k}|y\^T \sim N(f_k\^{T}, Q_k\^{T}) \\]
 where: \\(f_k\^{T} = F\_{T+k} \, a_k\^{T} \\) and \\(Q_k\^{T} = F\_{T+k} \, R_k\^{T} F\_{T+k}^{\, \prime} + V\_{T+k}\\)
 
@@ -430,7 +428,7 @@ TVP.dlm <- buildTVP(TVP.mle$par, sp500)
 
 #### Filtering and Smooting:
 
-* __Filtering__ Optimal estimates of \\(\theta_t\\) given information available at time \\(t\\), \\(I_t=\left \\{ y_1,...,y_t \right\\}\\)
+* __Filtering__ Optimal estimates of \\(\theta_t\\) given information available at time \\(t\\), \\( I_t =\left \\{ y_1,...,y_t \right\\}\\)
 * __Smoothing__ Optimal estimates of \\(\theta_t\\) given information available at time \\(T\\), \\(I_T =\left \\{ y_,...,y_T \right\\}\\)
 
 Now that we have obtained model estimates, and build the optimal model, we can _filter_ the data through it, to obtain filtered values of the state vectors, together with their variance/co-variance matrices.
@@ -517,14 +515,14 @@ chart.TimeSeries(cbind(alpha.s, a.l, a.u), main="Smoothed estimates of alpha", y
                  colorset=c(1,2,2), lty=c(1,2,2),ylab=expression(alpha),xlab="")
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/esimatestWithBandsReg1.png) 
+![center](figure/esimatestWithBandsReg1.png) 
 
 {% highlight r %}
 chart.TimeSeries(cbind(beta.s, b.l, b.u), main="Smoothed estimates of beta",
                  colorset=c(1,2,2), lty=c(1,2,2),ylab=expression(beta),xlab="")
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/esimatestWithBandsReg2.png) 
+![center](figure/esimatestWithBandsReg2.png) 
 
 or using package `ggplot2` ([Saravia, 2012](http://stackoverflow.com/questions/14033551/r-plotting-confidence-bands-with-ggplot2))
 we would do
@@ -542,14 +540,14 @@ names(beta.df) <- c("dateTime", "beta", "upr", "lwr")
 ggplot(data = alpha.df, aes(dateTime, alpha) ) + geom_point () + geom_line() + geom_ribbon(data=alpha.df, aes(ymin=lwr,ymax=upr), alpha=0.3) + labs(x = "year", y = expression(alpha), title = expression(paste("State Space Values of ", alpha, " over Time")))
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/paramReg1.png) 
+![center](figure/paramReg1.png) 
 
 {% highlight r %}
 ## Plotting beta
 ggplot(data = beta.df, aes(dateTime, beta) ) + geom_point (data = beta.df, aes(dateTime, beta) ) + geom_line() + geom_ribbon(data=beta.df , aes(ymin=lwr,ymax=upr), alpha=0.3) + labs(x = "year", y = expression(beta), title = expression(paste("State Space Values of ", beta, " over Time")))
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/paramReg2.png) 
+![center](figure/paramReg2.png) 
 
 ##### Forcasting using Kalman Filter
 
@@ -595,14 +593,14 @@ qqnorm(TVP.res)
 qqline(TVP.res)
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/resReg1.png) 
+![center](figure/resReg1.png) 
 
 {% highlight r %}
 # Plotting Diagnostics for Time Series fits
 tsdiag(TVP.f)
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/resReg2.png) 
+![center](figure/resReg2.png) 
 
 ##### <a name="topic4.1"></a> Example 5: Random Walk Plus noise - Nile River Data
 We start this example by plotting the data set.
@@ -615,7 +613,7 @@ qplot(y = y, x = year, data = Nile.df, geom = 'line', ylab = 'Nile water level',
                  main = "Measurements of the annual flow of \n the river Nile at Ashwan 1871-1970")
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/nileLvl.png) 
+![center](figure/nileLvl.png) 
 
 The previous graph illustrates the annual discharge of flow of water, (in unit of \\(10\^8\\) \\(m\^3\\), of the Nile at Aswan. 
 
@@ -650,7 +648,7 @@ p <- p + theme(legend.position="bottom")
 print(p)
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/sig2noise.png) 
+![center](figure/sig2noise.png) 
 
 Next we fit a _local level_ model, as described in example 1 above.
 
@@ -701,7 +699,7 @@ drop(W(LocalLevelmod))
 Looking at the plot of the original data, we notice a negative spike around the year 1900. This coincided with construction of the Aswan Low Dam, by the British during the years of 1898 to 1902. Recall that the model we just fit the data to (local level plus noise) assumes that the variance matrices \\(W_t\\) and \\(V_T\\) are constants over time. Therefore, one way to improve the accuracy of this model and take the jump in water level (around 1899) into account, is to assume that the variance _did change_ on this year. The new model becomes:
 \\[
 \begin{align}
-y_t &= \theta_t  + \upsilon_t \qquad & \upsilon_t \sim N(0,V)\\\\
+y_t &= \theta_t + \upsilon_t \qquad & \upsilon_t \sim N(0,V)\\\\
 \theta_t &= \, \theta\_{ t-1 } + \omega_t \qquad & \omega_t \sim N(0,W_t)\\\\
 \end{align}
 \\]
@@ -906,8 +904,8 @@ For \\(k\\) such series, define the observation and system matrices of the joint
 
 \\[ 
 \begin{align}
-F &= F_0 \, \otimes \,I_k  \\\\
-G &= G_0 \, \otimes \,I_k  \\\\
+F &=& F_0 \, \otimes \,I_k  \\
+G &=& G_0 \, \otimes \,I_k  \\
 \end{align}
 \\]
 
@@ -1057,7 +1055,7 @@ p <- p + theme(legend.position="none")
 print(p)
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/paramGDPs1.png) 
+![center](figure/paramGDPs1.png) 
 
 {% highlight r %}
 # Plotting the rate of change of the smoothed GDP per capita
@@ -1071,9 +1069,10 @@ p <- p + theme(legend.position="none")
 print(p)
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/paramGDPs2.png) 
+![center](figure/paramGDPs2.png) 
 
 ### <a name="topic6"></a> Seemingly Unrelated Regression models
+
 Building on top of SUTSE, the next example we will consider is the multivariate version of the dynamic Capital Asset Pricing Model (CAPM) for \\(m\\) assets. 
 
 Let \\({r_t}^{\,j} ,{r_t}^{\, M}\\) and \\({r_t}^{\, f}\\) be the returns at time \\(t\\) of asset, \\(j\\), under study, of the market, \\(M\\), and of a risk-free asset, \\(f\\), respectively. Define the excess returns of the asset, \\(j\\) as \\( y\_{j,t} = r_\{j,t\} − r_t^{\, f}\\) and the market’s excess returns as \\(x_t = r_t^\{\,M\} − r_t^\{\,f\}\\); where \\(j = 1, \dots , m\\). Then:
@@ -1105,7 +1104,7 @@ where
 
 ##### <a name="topic6.1"></a> Example 7: CAPM regression model
 
-We assume for simplicity that the \\(\alpha\_{j,t}\\) are time-invariant, which amounts to assuming that \\(W\_{\alpha} = 0\\).
+We assume for simplicity that the \\(\alpha\_{j,t}\\) are time-invariant, which amounts to assuming that \\(W_\alpha = 0\\).
 
 
 {% highlight r %}
@@ -1266,24 +1265,24 @@ p <- p + theme(legend.position="bottom" , axis.title.y  = element_text(size=14))
 print(p)
 {% endhighlight %}
 
-![center]({{ BASE_PATH }}/figs/dlmFigures/multiCAPM.png) 
+![center](figure/multiCAPM.png) 
 
 ### <a name="topic7"></a> Dynamic Common Factors Model
 
 **Note:** In this section we will use the parameter \\(x\\) instead of \\(\theta\\) to indicate the state since it's more common to use \\(x\\) as a variable in this kind of analysis.
 
-1.  Let \\(y_t\\) be an _m-dimensional_ observation that can be modeled, at any time \\(t\\), as  a linear combination
-of the factor components, \\(z\\), subject to additive observation noise. So:
-\\[
-y_t  =  A  \, z_t  + \upsilon_t \qquad \upsilon_t \sim N_m(0,V)
-\\]
-
-2.  Let \\(z_t\\) be a _q-dimensional_ vector of _factors_ that evolves according to a DLM:
+1.  Let \\(z_t\\) be a _q-dimensional_ vector of _factors_ that evolves according to a DLM:
 \\[
 \begin{align}
 z_t &= F_0 \, x_t   + \varepsilon_t \qquad & \varepsilon_t \sim N_q(0,\Sigma) \\\\ 
 x_t &= G \, x_\{t-1\} + \omega_t \qquad & \omega_t \sim N_p(0,W) \\\\
 \end{align}
+\\]
+
+2.  Let \\(y_t\\) be an _m-dimensional_ observation that can be modeled, at any time \\(t\\), as  a linear combination
+of the factor components, \\(z\\), subject to additive observation noise. So:
+\\[
+y_t  =  A  \, z_t  + \upsilon_t \qquad \upsilon_t\sim N_m(0,V)
 \\]
 
 3.  Setting \\(\Sigma = 0\\) implies that \\(\varepsilon_t = 0\\) for every \\(t\\) and then we have
@@ -1327,8 +1326,8 @@ Var(z_t|y\^{T}) &= F_0 \, Var(x_t|y\^T) \, F_0^\prime =  F_0 \, S_t \, F_0\^\pri
 \\[
 A_\{i \, j\} = 
 \begin{cases} 
-0 \quad \textrm{if} \, \, i < j \\\\
-1 \quad \textrm{if} \, \, i = j \\\\
+0 \quad \textrm{if} \, \, i < j \\ 
+1 \quad \textrm{if} \, \, i = j \\
 \end{cases}
 \\]
 where \\(i = 1, \dots, m\\); and \\(j = 1, \dots, q\\)
