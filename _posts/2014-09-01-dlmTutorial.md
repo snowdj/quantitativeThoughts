@@ -241,14 +241,14 @@ Let \\( y\^t = (y_1, ..., y_t) \\) be the vector of observation up to time \\(t\
 1.  Start with \\( \theta_0 \sim N(m_0, C_0) \\) at _time_ 0
 
 2.  One step forecast for the _state_ 
-\\\[ \theta_t|y^\{t-1\} \sim N(a_t, R_t) \\]
+\\\[ \theta_t|y^\{t-1} \sim N(a_t, R_t) \\]
 where \\(a_t = G_t \cdot m\_{t-1} \\), and \\(R_t = G_t C_\{t-1\} G_t^\prime + W_t\\)
 
 3.  One step forecast for the _observation_ 
 \\[ y_t|y^{t-1} \sim N(f_t, Q_t) \\]
 where \\(f_t = F_t \cdot a_t\\), and \\(Q_t = F_t R_\{t-1\} F_t^\prime + V_t\\)
 
-4.  Compute the _posterior_ at time $t$; 
+4.  Compute the _posterior_ at time \\(t\\); 
 \\[ \theta_t|y\^t \sim N(m_t, C_t) \\] 
 where \\(m_t = a_t + R_t \, f_t^\prime Q_t^\{-1\} (y_t - f_t)\\), and \\(C_t = R_t - R_t F_t^\prime Q_t^\{-1\} F_t R_t\\)
 
@@ -265,7 +265,7 @@ The function `dlmFilter` returns:
 
 #### Smoothing:
 
-Backward recursive algorithm can be used to obtain \\(p(\theta_t|y^T)\\) for a fixed \\(T\\) and for \\(t =\\) {\\(0, 1, 2, ...T\\)}.
+Backward recursive algorithm can be used to obtain \\( p(\theta_t|y\^T) \\) for a fixed \\(T\\) and for \\(t =\\) {\\(0, 1, 2, ...T\\)}.
 
 1.  Starting from \\(\theta_T|y_T \sim N(m_T, C_T\\) at time \\(t = T\\)
 2.  For \\(t\\) in \\(\left \\{ T - 1, T - 2, ..., 0 \right \\}\\)
